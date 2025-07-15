@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "72-2-license-llm-how"
+version = "0.1.0"
+description = ""
+authors = ["yubii2 <yubii02@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+# 문항-이미지 매핑을 위한 패키지들
+pymupdf = "^1.23.0"
+opencv-python = "^4.12.0.88"
+numpy = ">=2.0.0,<2.3.0"  # opencv-python 호환성을 위해 범위 제한
+pillow = "^10.0.0"
+pandas = "^2.0.0"
+matplotlib = "^3.7.0"
+scipy = "^1.11.0"
+
+# LLM 연동을 위한 패키지들
+openai = "^1.0.0"
+
+# 개발 및 분석 도구
+jupyter = "^1.0.0"
+seaborn = "^0.12.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
