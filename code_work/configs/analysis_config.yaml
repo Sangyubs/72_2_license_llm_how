@@ -1,0 +1,4 @@
+# analysis_config.yaml
+input_dir: "results/"
+output_dir: "analysis/"
+judge_model_name: "gemini-1.5-pro"

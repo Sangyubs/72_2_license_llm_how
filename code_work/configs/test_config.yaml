@@ -1,0 +1,19 @@
+# 실험 식별 이름
+experiment_name: "객관식_제로샷_기본실험_30x40"
+
+###### 실험 조건 파라미터 ######
+experiment_type: "choice"  #'choice', 'ox', 'open' 중 하나를 선택" 
+prompt_type: "zero-shot" # 'zero-shot' 또는 'few-shot' 중 하나를 선택
+num_iterations: 30 # 총 반복 실행할 횟수
+num_samples: 40 # 한 번의 반복에서 샘플링할 문제의 개수
+model_name: "gemini-1.5-pro-latest" # LLM 모델 이름
+
+####### 파일 경로 설정 ######
+# 실험 유형별 입력 데이터셋 파일 경로
+input_files:
+  "choice": "dataset/dataset_mcq.csv"
+  "ox": "dataset/dataset_ox.csv"
+  "open": "dataset/dataset_open.csv" 
+
+# 결과 파일을 저장할 디렉토리 경로
+output_dir: "results/"

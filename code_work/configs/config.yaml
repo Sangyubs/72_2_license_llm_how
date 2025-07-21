@@ -1,0 +1,32 @@
+# 이 실험을 식별하기 위한 고유한 이름
+experiment_name: "객관식_제로샷_기본실험_30x40"
+
+# 사용할 LLM 모델의 이름
+model_name: "gemini-1.5-pro-latest"
+
+
+###### 실험 조건 파라미터 ######
+
+# 실행할 실험 유형: 'choice', 'ox', 'open' 중 하나를 선택
+experiment_type: "choice"
+
+# 사용할 프롬프트 유형: 'zero-shot' 또는 'few-shot' 중 하나를 선택
+prompt_type: "zero-shot"
+
+# 총 반복 실행할 횟수
+num_iterations: 30
+
+# 한 번의 반복에서 샘플링할 문제의 개수
+num_samples: 40
+
+
+####### 파일 경로 설정 ######
+
+# 실험 유형별 입력 데이터셋 파일 경로
+input_files:
+  "choice": "dataset/dataset_mcq.csv"
+  "ox": "dataset/dataset_ox.csv"
+  "open": "dataset/dataset_open.csv"
+
+# 결과 파일을 저장할 디렉토리 경로
+output_dir: "results/"
