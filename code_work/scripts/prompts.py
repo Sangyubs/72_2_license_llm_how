@@ -34,7 +34,7 @@ ANSWER_FORMAT_TEMPLATES = {
 }
 ```""",
 
-    "O/X": """
+    "OX": """
 ## 답변 형식
 반드시 다음 JSON 형식으로만 답변하세요:
 

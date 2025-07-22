@@ -1,32 +1,44 @@
-# 이 실험을 식별하기 위한 고유한 이름
-experiment_name: "객관식_제로샷_기본실험_30x40"
+# ==================================================
+#               전역 설정 (Global Settings)
+# ==================================================
+# experiment_name: "unified_experiment_run" # 자동 생성되므로 주석 처리 또는 삭제
+experiment_type: 'ox'   # 실행할 실험 유형 선택: 'choice', 'ox', 'open'
+model_name: 'gemini-2.0-flash-lite'
+output_dir: 'results/'
 
-# 사용할 LLM 모델의 이름
-model_name: "gemini-1.5-pro-latest"
+# ==================================================
+#            실험 유형별 상세 설정 (Experiments)
+# ==================================================
+experiments:
+  # --- 1. 객관식(choice) 실험 설정 ---
+  choice:
+    prompt_type: 'zero-shot'
+    num_iterations: 4
+    num_samples: 100           # 반복당 샘플링할 '총' 문제 수 (검증용)
+    input_file: 'data/questionbank.xlsx'
+    samples_per_category:
+      '문장형_4지1답': 51
+      '문장형_4지2답': 11
+      '안전표지형_4지1답': 10
+      '사진형_5지2답': 12
+      '일러스트형_5지2답': 14
+      '동영상형_4지1답': 2
+    prompt_columns:
+      question: 'question'
+      options: 'options'
 
+  # --- 2. OX 실험 설정 ---
+  ox:
+    base_result_file: 'results/choice_zero-shot_gemini-2.0-flash-lite_4x100.csv' # 참조할 choice 결과 파일
+    target_category: '문장형_4지1답'
+    prompt_columns:
+      question: 'ox_question'
 
-###### 실험 조건 파라미터 ######
-
-# 실행할 실험 유형: 'choice', 'ox', 'open' 중 하나를 선택
-experiment_type: "choice"
-
-# 사용할 프롬프트 유형: 'zero-shot' 또는 'few-shot' 중 하나를 선택
-prompt_type: "zero-shot"
-
-# 총 반복 실행할 횟수
-num_iterations: 30
-
-# 한 번의 반복에서 샘플링할 문제의 개수
-num_samples: 40
-
-
-####### 파일 경로 설정 ######
-
-# 실험 유형별 입력 데이터셋 파일 경로
-input_files:
-  "choice": "dataset/dataset_mcq.csv"
-  "ox": "dataset/dataset_ox.csv"
-  "open": "dataset/dataset_open.csv"
-
-# 결과 파일을 저장할 디렉토리 경로
-output_dir: "results/"
+  # --- 3. 오픈형(open) 실험 설정 ---
+  open:
+    prompt_type: 'zero-shot'
+    num_iterations: 10
+    num_samples: 50
+    input_file: 'data/questionbank.xlsx'
+    prompt_columns:
+      question: 'open_question'
