@@ -115,10 +115,19 @@ async def grade_responses(df_parsed: pd.DataFrame, config: Dict[str, Any], clien
     cols = config['column_names']
     df = df_parsed.copy()
 
+    # 답변 문자열을 정렬하여 순서에 무관하게 비교하는 함수
+    def normalize_answer(answer_str: str) -> str:
+        if not isinstance(answer_str, str) or answer_str.strip() == '':
+            return ''
+        # 쉼표로 분리 -> 공백 제거 -> 정렬 -> 다시 쉼표로 합치기
+        parts = sorted([part.strip() for part in answer_str.split(',')])
+        return ','.join(parts)
+
     # 1. 정답 채점 (is_correct)
     print("정답 여부(is_correct)를 채점합니다...")
-    gt_answers = df['gt_answer_col'].astype(str).str.strip().str.upper()
-    pred_answers = df[cols['predicted_answer']].astype(str).str.strip().str.upper()
+    # apply를 사용하여 각 답변을 정규화
+    gt_answers = df['gt_answer_col'].astype(str).str.upper().apply(normalize_answer)
+    pred_answers = df[cols['predicted_answer']].astype(str).str.upper().apply(normalize_answer)
     df[cols['is_correct']] = (gt_answers == pred_answers).astype(int)
 
     # 2. 법적 근거 채점 (is_lra_correct) - 비동기 처리
