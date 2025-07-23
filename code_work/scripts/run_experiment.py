@@ -166,7 +166,7 @@ async def run_experiment(config: dict):
 
             task = model.generate_content_async(
                 contents=prompt_parts,
-                generation_config=genai.types.GenerationConfig(temperature=0.2),
+                generation_config=genai.types.GenerationConfig(temperature=0),
             )
             tasks.append(task)
         

@@ -1,4 +1,39 @@
-# analysis_config.yaml
-input_dir: "results/"
-output_dir: "analysis/"
-judge_model_name: "gemini-1.5-pro"
+# 실험 결과 분석 스크립트(analysis.py)를 위한 설정 파일
+
+# 분석할 원본 CSV 파일들이 있는 디렉토리 경로 및 파일 목록
+# 예: 'results/'
+input_dir: 'results/'
+input_files:
+  - 'test_choice_zero-shot_gemini-2.0-flash-lite_4x100_with_ox.csv'
+
+# 분석 결과(full_graded_results.csv, summary_stats.csv)가 저장될 디렉토리 경로
+# 예: 'results/analysis_output'
+output_dir: 'results/analysis_output'
+
+# 분석 결과 파일명
+graded_output_filename: 'full_graded_results.csv'
+analysis_output_filename: 'summary_stats.csv'
+
+# 서술형 답변 및 법적 근거 채점에 사용할 Judge LLM 모델 이름
+# 예: 'gemini-1.5-flash-latest'
+judge_model_name: 'gemini-2.0-flash-lite'
+
+# 분석 과정에서 생성될 주요 컬럼 이름 정의
+column_names:
+  question_id: 'number'
+  question_type: 'cls_2' # 문제 유형 (가설 2b 검증용)
+  iteration: 'iteration'
+  # 정답 컬럼
+  gt_choice_answer: 'answer'
+  gt_ox_answer: 'ox_answer'
+  gt_legal_basis: 'law_answer'
+  # LLM 응답 컬럼
+  llm_choice_response: 'llm_response'
+  llm_ox_response: 'llm_response_ox'
+  # 파싱 및 채점 결과 컬럼
+  predicted_answer: 'predicted_answer'
+  predicted_legal_basis: 'predicted_legal_basis'
+  is_correct: 'is_correct'
+  is_lra_correct: 'is_lra_correct'
+  format_type: 'format_type'
+
