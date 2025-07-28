@@ -4,7 +4,7 @@
 # 예: 'results/'
 input_dir: 'results/'
 input_files:
-  - 'test_choice_zero-shot_gemini-2.0-flash-lite_4x100_with_ox.csv'
+  - 'choice_zero-shot_gemini-2.0-flash-lite_30x100_with_ox.csv'
 
 # 분석 결과(full_graded_results.csv, summary_stats.csv)가 저장될 디렉토리 경로
 # 예: 'results/analysis_output'

@@ -13,7 +13,7 @@ experiments:
   # --- 1. 객관식(choice) 실험 설정 ---
   choice:
     prompt_type: 'zero-shot'
-    num_iterations: 4
+    num_iterations: 30
     num_samples: 100           # 반복당 샘플링할 '총' 문제 수 (검증용)
     input_file: 'data/questionbank.xlsx'
     samples_per_category:
@@ -29,7 +29,7 @@ experiments:
 
   # --- 2. OX 실험 설정 ---
   ox:
-    base_result_file: 'results/choice_zero-shot_gemini-2.0-flash-lite_4x100.csv' # 참조할 choice 결과 파일
+    base_result_file: 'results/choice_zero-shot_gemini-2.0-flash-lite_30x100.csv' # 참조할 choice 결과 파일
     target_category: '문장형_4지1답'
     prompt_columns:
       question: 'ox_question'
